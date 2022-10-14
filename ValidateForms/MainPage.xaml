@@ -17,8 +17,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     
-    <ScrollView HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="10">
-        <StackLayout Spacing="5">
+    <ScrollView HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" Padding="10">
+        <StackLayout Spacing="5" VerticalOptions="CenterAndExpand">
 
             <Label Text="TRAILHEAD FORM" HorizontalOptions="Center" FontSize="20" FontAttributes="Bold" TextColor="#0074ac"/>
             <Image Source="banner.jpg" HorizontalOptions="Center"/>            
