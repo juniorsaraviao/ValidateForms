@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:validateforms="clr-namespace:ValidateForms" 
+             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="ValidateForms.MainPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true">
+
+    <ContentPage.BindingContext>
+        <validateforms:MainPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ScrollView HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="10">
+        <StackLayout Spacing="5">
+
+            <Label Text="TRAILHEAD FORM" HorizontalOptions="Center" FontSize="20" FontAttributes="Bold" TextColor="#0074ac"/>
+            <Image Source="banner.jpg" HorizontalOptions="Center"/>            
+            <Label Text="Complete the required fields" HorizontalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="#0074ac"/>
+
+            <!--Name-->
+            <Label Text="Name" FontSize="15"/>
+            <Entry Text="{Binding Name}" Placeholder="Enter Name" HorizontalOptions="FillAndExpand" Keyboard="Text">
+                <Entry.Behaviors>
+                    <toolkit:UserStoppedTypingBehavior Command="{Binding ValidateNameCommand}"
+                                                       StoppedTypingTimeThreshold="500"/>
+                </Entry.Behaviors>
+            </Entry>
+            <Label Text="{Binding NameErrorMessage}" FontSize="13" IsVisible="{Binding ShowNameErrorMessage}" TextColor="Red"/>
+
+            <!--Email-->
+            <Label Text="Email" FontSize="15"/>
+            <Entry Text="{Binding Email}" Placeholder="Enter Email" HorizontalOptions="FillAndExpand" Keyboard="Email">
+                <Entry.Behaviors>
+                    <toolkit:UserStoppedTypingBehavior Command="{Binding ValidateEmailCommand}"
+                                                       StoppedTypingTimeThreshold="500"/>
+                </Entry.Behaviors>
+            </Entry>
+            <Label Text="{Binding EmailErrorMessage}" FontSize="13" IsVisible="{Binding ShowEmailErrorMessage}" TextColor="Red"/>
+
+            <!--Password-->
+            <Label Text="Password" FontSize="15"/>
+            <Entry Text="{Binding Password}" Placeholder="Enter Password" HorizontalOptions="FillAndExpand" Keyboard="Default" IsPassword="True">
+                <Entry.Behaviors>
+                    <toolkit:UserStoppedTypingBehavior Command="{Binding ValidatePasswordCommand}"
+                                                       StoppedTypingTimeThreshold="500"/>
+                </Entry.Behaviors>
+            </Entry>
+            <Label Text="{Binding PasswordErrorMessage}" FontSize="13" IsVisible="{Binding ShowPasswordErrorMessage}" TextColor="Red"/>
+
+            <Button HorizontalOptions="Center" Text="Sign up" Margin="0,10,0,0" BackgroundColor="LightGray" 
+                    WidthRequest="100" TextColor="Black" CornerRadius="5" TextTransform="None" Command="{Binding SignUpCommand}"/>
+        </StackLayout>
+    </ScrollView>   
+
+</ContentPage>
